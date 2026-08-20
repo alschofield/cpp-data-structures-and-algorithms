@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.25)
+project(cpp_data_structures_and_algorithms LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+enable_testing()
+file(GLOB_RECURSE CURRICULUM_TESTS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/**/test_*.cpp")
+foreach(test_source IN LISTS CURRICULUM_TESTS)
+  file(RELATIVE_PATH test_name "${CMAKE_CURRENT_SOURCE_DIR}/src" "${test_source}")
+  string(REPLACE "/" "_" test_name "${test_name}")
+  string(REPLACE ".cpp" "" test_name "${test_name}")
+  add_executable(${test_name} "${test_source}")
+  target_include_directories(${test_name} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+  add_test(NAME ${test_name} COMMAND ${test_name})
+endforeach()
