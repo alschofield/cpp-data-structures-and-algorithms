@@ -1,13 +1,13 @@
 # Adjacency List
 
 ## How It Works
-Each vertex owns a list of its outgoing neighbors, so stored memory follows actual edges.
+Each dynamically added node owns a list of weighted outgoing edges, so stored memory follows actual edges.
 
 ## Required API
-`class AdjacencyList` constructed with `(vertex_count, directed)` and exposing `AddEdge`, `HasEdge`, `Neighbors(visitor) -> bool`, `VertexCount`, and `EdgeCount`.
+`class AdjacencyList` exposes `Create(bool directed)`, `AddNode(Value) -> NodeHandle`, `FindNode(Value) -> optional<NodeHandle>`, `NodeAt(size_t index) -> optional<NodeHandle>`, `NodeValue(NodeHandle) -> optional<Value>`, `AddEdge(NodeHandle from, NodeHandle to, uint64_t weight)`, `HasEdge`, `Neighbors(NodeHandle, visitor) -> bool`, `NodeCount`, `EdgeCount`, and `AsGraphView() -> GraphView`.
 
 ## Contract
-Vertices are `[0, V)` and invalid vertices fail cleanly. Undirected graphs record both directions. Explicitly reject duplicate edges; allow self-loops. Neighbor iteration visits each out-edge once in deterministic insertion order. Do not use library graph types.
+`Create` starts empty; `AddNode` returns a stable graph-local handle and assigns the next dense internal index. `NodeAt` uses insertion order, and `FindNode` returns the matching value's handle or no result. Reject foreign or invalid handles cleanly. Undirected graphs record both directions with the same nonnegative weight. Reject duplicate edges, allow self-loops, and visit each weighted out-edge once in deterministic insertion order. `AsGraphView` maps internal node indexes to weighted neighbor indexes without owning or mutating graph storage. Do not use library graph types.
 
 ## Complexity Targets
-AddEdge amortized O(1); HasEdge and neighbors O(deg(u)); full traversal O(V+E); O(V+E) space.
+AddNode and AddEdge amortized O(1); HasEdge and neighbors O(deg(u)); full traversal O(V+E); O(V+E) space.
