@@ -1,14 +1,17 @@
 # Data Structures and Algorithms in C++
 
-This repository mirrors the canonical C curriculum's 27-leaf taxonomy. Each
+This repository mirrors the canonical C curriculum's 26-leaf taxonomy. Each
 leaf contains an idiomatic C++ API contract and a test scaffold. Implement
 the production API from first principles; do not replace an exercise with a
 standard-library container or algorithm.
 
+`std::vector` is the native dynamic-sequence baseline and is not a separate
+curriculum exercise. It may be used where a topic needs contiguous backing
+storage.
+
 ## Taxonomy
 
 ```text
-src/data-structures/linear/arrays/dynamic-array
 src/data-structures/linear/stacks/stack
 src/data-structures/linear/queues/queue
 src/data-structures/linear/linked/singly-linked-list
