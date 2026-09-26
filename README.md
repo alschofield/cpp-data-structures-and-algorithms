@@ -1,44 +1,13 @@
 # Data Structures and Algorithms in C++
 
-This repository mirrors the canonical C curriculum's 26-leaf taxonomy. Each
-leaf contains an idiomatic C++ API contract and a test scaffold. Implement
-the production API from first principles; do not replace an exercise with a
-standard-library container or algorithm.
+## Purpose and Status
 
-`std::vector` is the native dynamic-sequence baseline and is not a separate
-curriculum exercise. It may be used where a topic needs contiguous backing
-storage.
+A language-specific, from-first-principles data-structures-and-algorithms learning curriculum.
+Target-scaffold repository. The contracts and test scaffolds define learner-owned production APIs.
 
-## Taxonomy
+## Curriculum Coverage
 
-```text
-src/data-structures/linear/stacks/stack
-src/data-structures/linear/queues/queue
-src/data-structures/linear/linked/singly-linked-list
-src/data-structures/linear/linked/doubly-linked-list
-src/data-structures/associative/hash-tables/separate-chaining
-src/data-structures/trees/binary-search-trees/binary-search-tree
-src/data-structures/trees/tries/prefix-trie
-src/data-structures/trees/heaps/binary-heap
-src/data-structures/graphs/graph-view
-src/data-structures/graphs/representations/adjacency-list
-src/data-structures/graphs/representations/adjacency-matrix
-src/data-structures/graphs/disjoint-sets/union-find
-src/algorithms/searching/linear-search
-src/algorithms/searching/binary-search
-src/algorithms/sorting/comparison/bubble-sort
-src/algorithms/sorting/comparison/selection-sort
-src/algorithms/sorting/comparison/insertion-sort
-src/algorithms/sorting/comparison/merge-sort
-src/algorithms/sorting/comparison/quick-sort
-src/algorithms/sorting/comparison/heap-sort
-src/algorithms/sorting/non-comparison/counting-sort
-src/algorithms/sorting/non-comparison/radix-sort
-src/algorithms/graph-traversal/breadth-first-search
-src/algorithms/graph-traversal/depth-first-search
-src/algorithms/shortest-paths/dijkstra
-src/algorithms/shortest-paths/a-star
-```
+26 applicable topic leaves. The native dynamic sequence is the baseline rather than a separate exercise.
 
 ## Commands
 
@@ -48,5 +17,15 @@ cmake --build build
 ctest --test-dir build --output-on-failure
 ```
 
-Tests intentionally include the production headers you will create, so builds
-fail until the corresponding API exists.
+## Conventions
+
+`std::vector` is the allowed native dynamic-sequence baseline when contiguous dynamic storage is needed.
+Implement each exercise from first principles; do not replace it with a standard-library container or algorithm.
+
+## Documentation Contract Template
+
+Each topic leaf README uses these sections: `Implementation Status`, `How It Works`, `Required API`, `Contract`, `Complexity Targets`, and `Verification`. The leaf README is authoritative for that topic; source and tests must preserve its language-specific API syntax and stated behavior.
+
+## Repository-Specific Notes
+
+Production implementations are learner-owned. Documentation and verification scaffolding may describe the required work but do not substitute for it.

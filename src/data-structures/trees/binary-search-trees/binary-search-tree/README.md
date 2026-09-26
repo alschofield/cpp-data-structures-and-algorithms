@@ -1,19 +1,31 @@
 # Binary Search Tree
 
-## Implementation Model
+## Implementation Status
+
+Target scaffold. Production behavior is not claimed until the learner-owned implementation and its verification are complete.
+
+## How It Works
+
 Each node keeps smaller values left and larger values right; in-order traversal produces sorted order.
 
-## Public Contract
+Ordered comparisons select the left or right subtree and in-order traversal visits values in sorted order.
+
+## Required API
+
 `template<class T, class Compare> class BinarySearchTree` with `Insert(T) -> bool`, `Find(key) -> std::optional<T>`, `Contains(key)`, `Remove(key) -> std::optional<T>`, `InOrder(visitor) -> bool`, `Size`, and `Empty`.
 
-## Semantics And Invariants
+## Contract
+
 Comparator equality rejects duplicates and retains the first value. Remove supports leaves, one-child nodes, two-child nodes, and root. InOrder is strictly increasing and stops when its visitor returns false. Do not use ordered library containers.
 
-## C++ Ownership And Failures
 The tree owns every node and stored `T` value. `Find` and `Remove` return owned optional values, so callers receive no reference into a node. Comparator equivalence defines duplicate detection and must be used consistently for navigation. RAII must release each node, and a throwing allocation, comparison, or element operation must not break ordering, reachability, or size invariants. Do not use ordered library containers.
 
-## Complexity
+## Complexity Targets
+
 Balanced Insert/Find/Remove/Contains O(log n); unbalanced worst O(n); InOrder O(n); O(n) nodes plus O(height) work space.
 
+Target: O(log n) time and O(1) auxiliary space.
+
 ## Verification
+
 `test_binary_search_tree.cpp` currently verifies that `binary_search_tree.hpp` is includable. Add coverage for duplicate equivalence, all removal shapes, ordered early-stopped traversal, and cleanup under exceptions.
